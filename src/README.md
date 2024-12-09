@@ -3,7 +3,7 @@
  ShoppyGlobe is a basic e-commerce application. This README file will guide
 
  **Features**
- 
+
  **Product Listing**
  **Product Detail**
  **Cart Functionality**
@@ -35,4 +35,4 @@ npm start
 Then open  http://localhost:3000 in your browser to view the app.
 
 **Github Link**
-GitHub repository containing the project ( )
+GitHub repository containing the project (https://github.com/cupadhyayy/ShoppyGlobe.git )
