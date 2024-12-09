@@ -145,11 +145,13 @@
   .remove-button,
   .checkout-button {
     margin-top: 10px;
+    margin-right:10px ;
     padding: 10px;
     background-color: #28a745;
     color: white;
     border: none;
     cursor: pointer;
+    
   }
   
   .remove-button:hover,

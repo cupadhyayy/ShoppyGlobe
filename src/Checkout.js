@@ -1,16 +1,18 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { removeFromCart } from "./redux/cartSlice";
-import "./Checkout.css";
+import { useLocation, useNavigate } from "react-router-dom"; // Import hooks for location and navigation
+import { useDispatch } from "react-redux"; // Import useDispatch to dispatch actions to Redux
+import { removeFromCart } from "./redux/cartSlice"; // Import the action to remove an item from the cart
+import "./Checkout.css"; // Import the styles for the Checkout component
 
 const Checkout = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-   // getting the product data passed through Link
+  const location = useLocation(); // Get the current location from React Router (to retrieve passed state)
+  const navigate = useNavigate(); // Hook for navigating to different routes programmatically
+  const dispatch = useDispatch(); // Hook to dispatch actions to the Redux store
+
+  // Retrieve the product passed through the Link's state (from CartItem)
   const product = location.state?.product;
 
+  // If no product is passed, display a message and allow the user to go back to the cart
   if (!product) {
     return (
       <div className="checkout-container">
@@ -23,11 +25,17 @@ const Checkout = () => {
     );
   }
 
+  // Function to handle placing the order
   const handlePlaceOrder = (event) => {
-    event.preventDefault();
-    
+    event.preventDefault(); // Prevent form from reloading the page
+
+    // Dispatch the removeFromCart action to remove the product from the cart after the order is placed
     dispatch(removeFromCart(product.id));
+
+    // Alert the user that the order has been placed
     alert(`Order placed for ${product.title}!`);
+
+    // Navigate the user back to the homepage or a success page after the order
     navigate("/"); 
   };
 
@@ -35,12 +43,14 @@ const Checkout = () => {
     <div className="checkout-container">
       <h1>Checkout</h1>
       <div className="checkout-item">
+        {/* Display product information */}
         <h4>{product.title}</h4>
         <p>Price: ${product.price}</p>
         <p>Quantity: {product.quantity}</p>
         <p>Total: ${(product.price * product.quantity).toFixed(2)}</p>
       </div>
 
+      {/* Checkout form for collecting billing information */}
       <form onSubmit={handlePlaceOrder} className="checkout-form">
         <h2>Billing Details</h2>
         <div>
